@@ -23,8 +23,7 @@ export const Attribution = () => {
         color="textSecondary"
         align="center"
       >
-        {t('attribution.createdBy')}{' '}
-        <Link href="https://github.com/jhaals/yopass">Johan Haals</Link>
+        Copyright © 2023 Wiredcraft Co. Ltd. | <Link href="https://wiredcraft.com/legal/notice/">Imprint</Link> | <Link href="https://wiredcraft.com/legal/privacy/">Privacy</Link> | created with Yopass
       </Typography>
       {t('attribution.translatorName') && translationAttribution()}
     </Container>

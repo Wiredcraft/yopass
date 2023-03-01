@@ -161,6 +161,21 @@ func (y *Server) HTTPHandler() http.Handler {
 	return handlers.CustomLoggingHandler(nil, SecurityHeadersHandler(mx), httpLogFormatter(y.logger))
 }
 
+// ReadOnlyHTTPHandler containing all readonly routes
+func (y *Server) ReadOnlyHTTPHandler() http.Handler {
+	mx := mux.NewRouter()
+	mx.Use(newMetricsMiddleware(y.registry))
+
+	mx.HandleFunc("/secret/"+keyParameter, y.getSecret).Methods(http.MethodGet)
+	mx.HandleFunc("/secret/"+keyParameter, y.optionsSecret).Methods(http.MethodOptions)
+
+	mx.HandleFunc("/file/"+keyParameter, y.getSecret).Methods(http.MethodGet)
+	mx.HandleFunc("/file/"+keyParameter, y.optionsSecret).Methods(http.MethodOptions)
+
+	mx.PathPrefix("/").Handler(http.FileServer(http.Dir("public")))
+	return handlers.CustomLoggingHandler(nil, SecurityHeadersHandler(mx), httpLogFormatter(y.logger))
+}
+
 const keyParameter = "{key:(?:[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})}"
 
 // validExpiration validates that expiration is either

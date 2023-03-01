@@ -1,15 +1,12 @@
 import {
   faBomb,
-  faCodeBranch,
   faDownload,
   faLock,
-  faShareAlt,
-  faUserAltSlash,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
-import { Grid, Paper, Typography, Divider, Box } from '@mui/material';
+import { Grid, Paper, Typography, Divider } from '@mui/material';
 
 export const Features = () => {
   const { t } = useTranslation();
@@ -17,14 +14,6 @@ export const Features = () => {
     <Grid container={true} spacing={2} paddingTop={4}>
       <Grid item={true} xs={12}>
         <Divider />
-        <Box p={2}>
-          <Typography variant="h5" align={'center'}>
-            {t('features.title')}
-          </Typography>
-          <Typography variant="body2" align={'center'}>
-            {t('features.subtitle')}
-          </Typography>
-        </Box>
       </Grid>
       <Feature title={t('features.featureEndToEndTitle')} icon={faLock}>
         {t('features.featureEndToEndText')}
@@ -34,21 +23,6 @@ export const Features = () => {
       </Feature>
       <Feature title={t('features.featureOneTimeTitle')} icon={faDownload}>
         {t('features.featureOneTimeText')}
-      </Feature>
-      <Feature
-        title={t('features.featureSimpleSharingTitle')}
-        icon={faShareAlt}
-      >
-        {t('features.featureSimpleSharingText')}
-      </Feature>
-      <Feature
-        title={t('features.featureNoAccountsTitle')}
-        icon={faUserAltSlash}
-      >
-        {t('features.featureNoAccountsText')}
-      </Feature>
-      <Feature title={t('features.featureOpenSourceTitle')} icon={faCodeBranch}>
-        {t('features.featureOpenSourceText')}
       </Feature>
     </Grid>
   );
