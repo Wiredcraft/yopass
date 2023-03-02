@@ -1,0 +1,14 @@
+name: Build Docker image
+on:
+  push:
+    branches:
+      - read-only-mode
+jobs:
+  build:
+    uses: Wiredcraft/github-actions/.github/workflows/docker_build.yml@master
+    with:
+      runner: ubuntu-latest
+      project: external
+    secrets:
+      REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
